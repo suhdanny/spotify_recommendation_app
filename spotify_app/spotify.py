@@ -112,6 +112,7 @@ st.write("Now the final step! Enter the url for your spotify playlist and press"
          " have a spotify account: https://open.spotify.com/playlist/0zWlLYUrChgnDRC6DEsWBl?si=e41bf9b1fc53406f")
 
 with st.form('user_input_3'):
+    default = "https://open.spotify.com/playlist/0zWlLYUrChgnDRC6DEsWBl?si=e41bf9b1fc53406f"
     spotify_uri = st.text_input("Please enter your sharable\
                                  link to spotify playlist")
     n = st.number_input("Please type the number of songs you would like to be\
@@ -121,3 +122,5 @@ with st.form('user_input_3'):
 if spotify_uri is not None:
     result = recommend_songs(sp, spotify_uri, song_data, n)
     st.write(result)
+else:
+    result = recommend_songs(sp, default, song_data, n)
