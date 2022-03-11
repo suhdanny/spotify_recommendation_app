@@ -60,7 +60,6 @@ st.write("Below is the visualization of over 170k songs categorized by"
          " Note that I have used a dimensionality reduction technique known"
          " as PCA to visualize the clusters in 2-dimension.")
 
-
 with st.form('user_input_2'):
     k = st.selectbox("Please select the desired K for K-Means Clustering",
                      options=[i for i in range(15, 30)])
@@ -97,7 +96,7 @@ secret = "0e460b0897a44e08b9684dee2575cc9a"
 
 @st.cache(allow_output_mutation=True)
 def access_api(client_key, secret_key):
-    manager = SpotifyClientCredentials\
+    manager = SpotifyClientCredentials \
         (client_id=client_key, client_secret=secret_key)
     stf = spotipy.Spotify(client_credentials_manager=manager)
     return stf
@@ -118,10 +117,8 @@ with st.form('user_input_3'):
                        recommended", min_value=1, max_value=15)
     st.form_submit_button()
 
-default = "https://open.spotify.com/playlist/0zWlLYUrChgnDRC6DEsWBl?si=e41bf9b1fc53406f"
-
-if spotify_uri is None:
-    result = recommend_songs(sp, default, song_data, n)
-else:
+try:
     result = recommend_songs(sp, spotify_uri, song_data, n)
     st.write(result)
+except:
+    st.write("Playlist link not inserted.")
