@@ -117,5 +117,7 @@ with st.form('user_input_3'):
     n = st.number_input("Please type the number of songs you would like to be\
                        recommended", min_value=1, max_value=15)
     st.form_submit_button()
+
+if spotify_uri is not None:
     result = recommend_songs(sp, spotify_uri, song_data, n)
     st.write(result)

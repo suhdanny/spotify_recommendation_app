@@ -1,5 +1,5 @@
-#ifndef NUMPY_CORE_INCLUDE_NUMPY_NOPREFIX_H_
-#define NUMPY_CORE_INCLUDE_NUMPY_NOPREFIX_H_
+#ifndef NPY_NOPREFIX_H
+#define NPY_NOPREFIX_H
 
 /*
  * You can directly include noprefix.h as a backward
@@ -209,4 +209,4 @@
 #define MAX_ELSIZE NPY_MAX_ELSIZE
 #endif
 
-#endif  /* NUMPY_CORE_INCLUDE_NUMPY_NOPREFIX_H_ */
+#endif

@@ -200,37 +200,30 @@ def _struct_dict_str(dtype, includealignedflag):
 
     # Build up a string to make the dictionary
 
-    if np.core.arrayprint._get_legacy_print_mode() <= 121:
-        colon = ":"
-        fieldsep = ","
-    else:
-        colon = ": "
-        fieldsep = ", "
-
     # First, the names
-    ret = "{'names'%s[" % colon
-    ret += fieldsep.join(repr(name) for name in names)
+    ret = "{'names':["
+    ret += ",".join(repr(name) for name in names)
 
     # Second, the formats
-    ret += "], 'formats'%s[" % colon
-    ret += fieldsep.join(
+    ret += "], 'formats':["
+    ret += ",".join(
         _construction_repr(fld_dtype, short=True) for fld_dtype in fld_dtypes)
 
     # Third, the offsets
-    ret += "], 'offsets'%s[" % colon
-    ret += fieldsep.join("%d" % offset for offset in offsets)
+    ret += "], 'offsets':["
+    ret += ",".join("%d" % offset for offset in offsets)
 
     # Fourth, the titles
     if any(title is not None for title in titles):
-        ret += "], 'titles'%s[" % colon
-        ret += fieldsep.join(repr(title) for title in titles)
+        ret += "], 'titles':["
+        ret += ",".join(repr(title) for title in titles)
 
     # Fifth, the itemsize
-    ret += "], 'itemsize'%s%d" % (colon, dtype.itemsize)
+    ret += "], 'itemsize':%d" % dtype.itemsize
 
     if (includealignedflag and dtype.isalignedstruct):
         # Finally, the aligned flag
-        ret += ", 'aligned'%sTrue}" % colon
+        ret += ", 'aligned':True}"
     else:
         ret += "}"
 
