@@ -118,8 +118,10 @@ with st.form('user_input_3'):
                        recommended", min_value=1, max_value=15)
     st.form_submit_button()
 
+default = "https://open.spotify.com/playlist/0zWlLYUrChgnDRC6DEsWBl?si=e41bf9b1fc53406f"
+
 if spotify_uri is None:
-    st.write("Please insert the url to continue.")
+    result = recommend_songs(sp, default, song_data, n)
 else:
     result = recommend_songs(sp, spotify_uri, song_data, n)
     st.write(result)
